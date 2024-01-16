@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_all_5_dp">5dp</dimen>
+    <dimen name="width_42_dp">42dp</dimen>
+    <dimen name="height_42_dp">42dp</dimen>
+    <dimen name="padding_all_24_dp">24dp</dimen>
+</resources>
