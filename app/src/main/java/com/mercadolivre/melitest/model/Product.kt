@@ -1,7 +1,11 @@
 package com.mercadolivre.melitest.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 
+@Parcelize
 data class Product(
     val id: String,
     val title: String,
@@ -24,14 +28,14 @@ data class Product(
     @SerializedName("official_store_id") val officialStoreId: Int?,
     @SerializedName("use_thumbnail_id") val useThumbnailId: Boolean,
     @SerializedName("accepts_mercadopago") val acceptsMercadopago: Boolean,
-    val shipping: Shipping,
+    val shipping: @RawValue Shipping,
     @SerializedName("stop_time") val stopTime: String,
-    val seller: Seller,
-    val attributes: List<Attribute>,
-    val installments: Installments,
+    val seller: @RawValue Seller,
+    val attributes: @RawValue List<Attribute>,
+    val installments: @RawValue Installments,
     @SerializedName("winner_item_id") val winnerItemId: String?,
     @SerializedName("catalog_listing") val catalogListing: Boolean,
-    val discounts: Any?,
-    @SerializedName("promotions") val promotions: List<Promotion>? = null,
+    val discounts: @RawValue Any?,
+    @SerializedName("promotions") val promotions: @RawValue List<Promotion>? = null,
     @SerializedName("inventory_id") val inventoryId: String?,
-)
+) : Parcelable
