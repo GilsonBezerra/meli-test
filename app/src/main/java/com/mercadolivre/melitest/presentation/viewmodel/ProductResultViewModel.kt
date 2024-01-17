@@ -19,16 +19,17 @@ class ProductResultViewModel(
     val state: State<ProductUIState> = _state
 
     fun searchProductByParameters(product: String) {
+        _state.value = ProductUIState(isLoading = true)
         val param = GetProductUseCase.Params(
             product = product,
         )
         viewModelScope.launch(Dispatchers.IO) {
-            _state.value = ProductUIState(isLoading = true)
             try {
                 val result = getProductUseCase.execute(param)
                 _state.value = result?.let { ProductUIState(product = it) } ?: ProductUIState()
             } catch (e: Exception) {
-                _state.value = e.localizedMessage?.let { ProductUIState(error = it) } ?: ProductUIState()
+                _state.value =
+                    e.localizedMessage?.let { ProductUIState(error = it) } ?: ProductUIState()
                 e.printStackTrace()
             } finally {
                 _state.value = _state.value.copy(isLoading = false)

@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">MeliTest</string>
-    <string name="product_result_screen_button_back_label">Voltar</string>
+
+<!--    Product Result Screen-->
+    <string name="product_result_screen_button_back_label">Voltar para Pesquisa</string>
+    <string name="product_result_screen_product_not_found_text">Não encontramos o seu produto :(</string>
 </resources>

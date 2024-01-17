@@ -1,5 +1,3 @@
-
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -67,6 +65,7 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("androidx.test:core-ktx:1.5.0")
     implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -93,6 +92,7 @@ dependencies {
     // Glide
     implementation("com.github.bumptech.glide:glide:4.12.0")
     implementation("com.google.accompanist:accompanist-glide:0.15.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
 
     // Koin for Android
     val koinVersion = "3.5.3"
