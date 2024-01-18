@@ -1,7 +1,18 @@
 <resources>
     <string name="app_name">MeliTest</string>
 
-<!--    Product Result Screen-->
+    <!--    Product Result Screen-->
     <string name="product_result_screen_button_back_label">Voltar para Pesquisa</string>
     <string name="product_result_screen_product_not_found_text">Não encontramos o seu produto :(</string>
+
+    <!--    Product Detail Screen-->
+    <string name="product_detail_screen_button_buy_text">Comprar</string>
+    <string name="product_detail_screen_button_add_to_cart_text">Adicionar ao carrinho</string>
+    <string name="product_detail_screen_search_fiel_placeholder">Buscar no Mercado Livre</string>
+    <string name="common_preprosition_in">em </string>
+    <string name="common_preprosition_by">por </string>
+    <string name="common_preprosition_or">ou </string>
+
+    <!--    Product List Item -->
+    <string name="product_list_item_interest_free_text">sem juros</string>
 </resources>

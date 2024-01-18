@@ -1,7 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--    Size -->
+    <dimen name="size_8_sp">8sp</dimen>
+    <dimen name="size_10_sp">10sp</dimen>
+    <dimen name="size_12_sp">12sp</dimen>
+    <dimen name="size_14_sp">14sp</dimen>
+    <dimen name="size_16_sp">16sp</dimen>
+
+    <!--    Shape -->
+    <dimen name="shape_8_dp">8dp</dimen>
+    <dimen name="shape_24_dp">24dp</dimen>
+
+    <!--    Space Top -->
+    <dimen name="space_top_6_dp">6dp</dimen>
+    <dimen name="space_top_8_dp">8dp</dimen>
+    <dimen name="space_top_16_dp">16dp</dimen>
+    <dimen name="space_top_32_dp">32dp</dimen>
+    <dimen name="space_top_80_dp">80dp</dimen>
+    <dimen name="space_top_132_dp">132dp</dimen>
+
+    <!--    Space Bottom -->
+    <dimen name="space_bottom_32_dp">32dp</dimen>
+
+    <!--    Padding Start -->
+    <dimen name="padding_start_16_dp">16dp</dimen>
+
+    <!--    Padding All -->
     <dimen name="padding_all_5_dp">5dp</dimen>
-    <dimen name="width_42_dp">42dp</dimen>
-    <dimen name="height_42_dp">42dp</dimen>
+    <dimen name="padding_all_16_dp">16dp</dimen>
     <dimen name="padding_all_24_dp">24dp</dimen>
+
+    <!--    Padding End -->
+    <dimen name="padding_end_4_dp">4dp</dimen>
+
+    <!--    Padding Top -->
+    <dimen name="padding_top_100_dp">100dp</dimen>
+
+    <!--    Width-->
+    <dimen name="width_42_dp">42dp</dimen>
+    <dimen name="width_200_dp">200dp</dimen>
+    <dimen name="width_350_dp">350dp</dimen>
+
+    <!--    Height -->
+    <dimen name="height_42_dp">42dp</dimen>
+    <dimen name="height_43_dp">43dp</dimen>
+    <dimen name="height_45_dp">45dp</dimen>
+    <dimen name="height_50_dp">50dp</dimen>
+    <dimen name="height_55_dp">55dp</dimen>
+    <dimen name="height_150_dp">150dp</dimen>
+    <dimen name="height_180_dp">180dp</dimen>
+
 </resources>

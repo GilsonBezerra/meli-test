@@ -23,20 +23,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import com.mercadolivre.melitest.R
+import com.mercadolivre.melitest.presentation.commons.PresentationConstants.Companion.EMPTY
 import com.mercadolivre.melitest.presentation.viewmodel.HomeScreenViewModel
 import org.koin.androidx.compose.koinViewModel
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 internal fun HomeScreen(
     viewModel: HomeScreenViewModel = koinViewModel(),
@@ -64,10 +63,10 @@ internal fun HomeScreen(
                     val icon = painterResource(id = R.drawable.baseline_search_24)
                     Image(
                         painter = painterResource(id = R.drawable.logo),
-                        contentDescription = "",
+                        contentDescription = EMPTY,
                         modifier = Modifier
-                            .height(150.dp)
-                            .width(350.dp),
+                            .height(dimensionResource(id = R.dimen.height_150_dp))
+                            .width(dimensionResource(id = R.dimen.width_350_dp)),
                     )
                     OutlinedTextField(
                         modifier = Modifier
@@ -76,7 +75,7 @@ internal fun HomeScreen(
                                 it.nativeKeyEvent.keyCode == KeyEvent.KEYCODE_ENTER
                             },
                         value = searchTextState.value,
-                        shape = RoundedCornerShape(24.dp),
+                        shape = RoundedCornerShape(R.dimen.shape_24_dp),
                         singleLine = true,
                         keyboardActions = KeyboardActions(
                             onDone = {
@@ -90,7 +89,7 @@ internal fun HomeScreen(
                         ),
                         placeholder = {
                             Text(
-                                text = "Buscar no Mercado Livre",
+                                text = stringResource(id = R.string.product_detail_screen_search_fiel_placeholder),
                             )
                         },
                         onValueChange = {
@@ -109,7 +108,7 @@ internal fun HomeScreen(
                             ) {
                                 Icon(
                                     painter = icon,
-                                    contentDescription = "Visibility Icon",
+                                    contentDescription = EMPTY,
                                     Modifier
                                         .padding(dimensionResource(R.dimen.padding_all_5_dp))
                                         .width(dimensionResource(R.dimen.width_42_dp))

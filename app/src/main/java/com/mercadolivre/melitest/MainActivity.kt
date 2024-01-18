@@ -12,9 +12,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import androidx.navigation.navigation
+import com.mercadolivre.melitest.model.Product
 import com.mercadolivre.melitest.presentation.navigation.NavigationScreen
 import com.mercadolivre.melitest.presentation.view.HomeScreen
+import com.mercadolivre.melitest.presentation.view.ProductDetailScreen
 import com.mercadolivre.melitest.presentation.view.ProductResultScreen
 import com.mercadolivre.melitest.ui.theme.MeliTestTheme
 
@@ -53,11 +54,28 @@ fun MeliAppTest() {
             backstackEntry.arguments?.getString("product")?.let {
                 ProductResultScreen(
                     product = it,
-                    onItemClick = {},
+                    onItemClick = { product ->
+                        navController.currentBackStackEntry?.savedStateHandle?.set(
+                            key = "product",
+                            value = product,
+                        )
+                        navController.navigate(NavigationScreen.ProductDetail.route)
+                    },
                     onBackButtonClick = {
                         navController.navigateUp()
                     },
 
+                )
+            }
+        }
+        composable(route = NavigationScreen.ProductDetail.route) {
+            val product = navController.previousBackStackEntry?.savedStateHandle?.get<Product>("product")
+            product?.let {
+                ProductDetailScreen(
+                    product = it,
+                    onBackButtonClick = {
+                        navController.navigateUp()
+                    }
                 )
             }
         }

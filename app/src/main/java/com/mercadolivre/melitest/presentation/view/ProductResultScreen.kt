@@ -16,7 +16,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -35,12 +35,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.Yellow
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import com.mercadolivre.melitest.R
 import com.mercadolivre.melitest.model.Product
+import com.mercadolivre.melitest.presentation.commons.PresentationConstants.Companion.EMPTY
 import com.mercadolivre.melitest.presentation.components.CommonProgressSpinner
 import com.mercadolivre.melitest.presentation.components.ProductListItem
 import com.mercadolivre.melitest.presentation.viewmodel.ProductResultViewModel
@@ -59,7 +61,6 @@ fun ProductResultScreen(
 ) {
     val window = (LocalContext.current as Activity).window
     WindowCompat.setDecorFitsSystemWindows(window, false)
-    val isLoading = viewModel.state.value.isLoading
     MaterialTheme() {
         Scaffold(
             modifier = Modifier
@@ -70,9 +71,9 @@ fun ProductResultScreen(
                     modifier = Modifier,
                     title = { /*TODO*/ },
                     navigationIcon = {
-                        IconButton(onClick = { onBackButtonClick() }) {
+                        IconButton(onClick = { /*TODO*/ }) {
                             Icon(
-                                imageVector = Icons.Default.ArrowBack,
+                                imageVector = Icons.Default.Menu,
                                 contentDescription = stringResource(
                                     R.string.product_result_screen_button_back_label,
                                 ),
@@ -82,12 +83,12 @@ fun ProductResultScreen(
                     actions = {
                         OutlinedTextField(
                             modifier = Modifier
-                                .height(55.dp),
-                            shape = RoundedCornerShape(24.dp),
+                                .height(dimensionResource(id = R.dimen.height_55_dp)),
+                            shape = RoundedCornerShape(dimensionResource(id = R.dimen.shape_24_dp)),
                             placeholder = {
                                 Text(text = product, textAlign = TextAlign.Center)
                             },
-                            value = "",
+                            value = EMPTY,
                             onValueChange = {},
                         )
                         IconButton(onClick = { /*TODO*/ }) {
@@ -100,27 +101,26 @@ fun ProductResultScreen(
                 )
             },
         ) {
-            Spacer(modifier = Modifier.height(132.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.space_top_132_dp)))
             Column(modifier = Modifier.fillMaxSize()) {
                 val state = viewModel.state.value
                 LaunchedEffect(Unit) {
                     viewModel.searchProductByParameters(product)
                 }
-                if (state.product.isNotEmpty()) {
+                if (state.isLoading) {
+                    CommonProgressSpinner()
+                } else if (state.product.isEmpty()) {
+                    ProductNotFoundError(
+                        onBackButtonClick = onBackButtonClick,
+                    )
+                } else {
                     ProductListScreen(
                         products = state.product,
                         onItemClick = onItemClick,
                     )
-                } else {
-                    ProductNotFoundError(
-                        onBackButtonClick = onBackButtonClick,
-                    )
                 }
             }
         }
-    }
-    if (isLoading) {
-        CommonProgressSpinner()
     }
 }
 
@@ -129,7 +129,12 @@ fun ProductListScreen(products: List<Product>, onItemClick: (product: Product) -
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
-            .padding(top = 100.dp, start = 16.dp),
+            .padding(
+                top = dimensionResource(id = R.dimen.padding_top_100_dp),
+                start = dimensionResource(
+                    id = R.dimen.padding_start_16_dp,
+                ),
+            ),
     ) {
         products.forEachIndexed { index, product ->
             ProductListItem(
@@ -139,7 +144,7 @@ fun ProductListScreen(products: List<Product>, onItemClick: (product: Product) -
                     onItemClick(product)
                 },
             )
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.space_top_16_dp)))
             Divider(thickness = 0.5.dp, modifier = Modifier.fillMaxWidth())
         }
     }
@@ -154,13 +159,15 @@ fun ProductNotFoundError(onBackButtonClick: () -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(text = productNotFoundText)
-        Spacer(modifier = Modifier.padding(top = 16.dp))
+        Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.space_top_16_dp)))
         Button(
             onClick = {
                 onBackButtonClick()
             },
-            modifier = Modifier.width(200.dp).height(50.dp),
-            shape = RoundedCornerShape(8.dp),
+            modifier = Modifier.width(dimensionResource(id = R.dimen.width_200_dp)).height(
+                dimensionResource(id = R.dimen.height_50_dp),
+            ),
+            shape = RoundedCornerShape(dimensionResource(id = R.dimen.shape_8_dp)),
         ) {
             Text(text = stringResource(R.string.product_result_screen_button_back_label))
         }
