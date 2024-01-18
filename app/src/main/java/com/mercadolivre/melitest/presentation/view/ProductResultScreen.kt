@@ -35,6 +35,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.Yellow
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -83,10 +84,17 @@ fun ProductResultScreen(
                     actions = {
                         OutlinedTextField(
                             modifier = Modifier
-                                .height(dimensionResource(id = R.dimen.height_55_dp)),
+                                .height(dimensionResource(id = R.dimen.height_48_dp)),
                             shape = RoundedCornerShape(dimensionResource(id = R.dimen.shape_24_dp)),
+                            singleLine = true,
                             placeholder = {
-                                Text(text = product, textAlign = TextAlign.Center)
+                                Text(
+                                    text = product,
+                                    textAlign = TextAlign.Center,
+                                    fontSize = with(
+                                        LocalDensity.current,
+                                    ) { dimensionResource(id = R.dimen.size_14_sp).toSp() },
+                                )
                             },
                             value = EMPTY,
                             onValueChange = {},

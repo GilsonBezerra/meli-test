@@ -27,6 +27,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -81,10 +82,19 @@ fun ProductDetailScreen(
                     actions = {
                         OutlinedTextField(
                             modifier = Modifier
-                                .height(dimensionResource(id = R.dimen.height_55_dp)),
+                                .align(Alignment.CenterVertically)
+                                .height(dimensionResource(id = R.dimen.height_48_dp)),
                             shape = RoundedCornerShape(dimensionResource(id = R.dimen.shape_24_dp)),
+                            singleLine = true,
                             placeholder = {
-                                Text(text = stringResource(id = R.string.product_detail_screen_search_fiel_placeholder))
+                                Text(
+                                    modifier = Modifier
+                                        .align(Alignment.CenterVertically),
+                                    text = stringResource(id = R.string.product_detail_screen_search_fiel_placeholder),
+                                    fontSize = with(
+                                        LocalDensity.current,
+                                    ) { dimensionResource(id = R.dimen.size_14_sp).toSp() },
+                                )
                             },
                             value = EMPTY,
                             onValueChange = {},
@@ -142,8 +152,9 @@ fun ProductDetailContent(
             text = product.title,
             fontSize = with(LocalDensity.current) { dimensionResource(id = R.dimen.size_16_sp).toSp() },
         )
-
-        CommonProductImageDetailScreen(product.thumbnail)
+        Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
+            CommonProductImageDetailScreen(product.thumbnail)
+        }
         Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.space_bottom_32_dp)))
         Text(text = "${product.price?.formatCurrency()}")
         if (product.installments.quantity <= 10) {
@@ -153,7 +164,11 @@ fun ProductDetailContent(
                     fontSize = with(LocalDensity.current) { dimensionResource(id = R.dimen.size_12_sp).toSp() },
                 )
                 Text(
-                    text = " ${product.installments.quantity}x ${product.installments.amount.formatCurrency()} sem juros",
+                    text = " ${product.installments.quantity}x ${product.installments.amount.formatCurrency()} ${
+                        stringResource(
+                            id = R.string.product_list_item_interest_free_text,
+                        )
+                    }",
                     fontSize = with(LocalDensity.current) { dimensionResource(id = R.dimen.size_14_sp).toSp() },
                     color = Color.Green,
                 )

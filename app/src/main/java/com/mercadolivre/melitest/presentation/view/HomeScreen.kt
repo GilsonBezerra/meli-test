@@ -30,6 +30,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import com.mercadolivre.melitest.R
 import com.mercadolivre.melitest.presentation.commons.PresentationConstants.Companion.EMPTY
@@ -75,7 +76,7 @@ internal fun HomeScreen(
                                 it.nativeKeyEvent.keyCode == KeyEvent.KEYCODE_ENTER
                             },
                         value = searchTextState.value,
-                        shape = RoundedCornerShape(R.dimen.shape_24_dp),
+                        shape = RoundedCornerShape(24.dp),
                         singleLine = true,
                         keyboardActions = KeyboardActions(
                             onDone = {
